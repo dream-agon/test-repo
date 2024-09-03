@@ -1,0 +1,115 @@
+\documentclass[11pt]{article} % use larger type; default would be 10pt
+
+\usepackage{indentfirst}
+\usepackage{abstract}
+\usepackage{geometry} 
+\usepackage{lettrine} 
+\usepackage{multicol}
+\usepackage{indentfirst}
+\usepackage{cite}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{graphics}
+\usepackage{subfigure}
+\usepackage{caption}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{diagbox}
+\usepackage{makecell}
+\usepackage{ctex} % 包含ctex宏包，输入中文所需要
+\usepackage{graphicx}%包含图片的宏包
+\usepackage{subfigure}%用于排版的宏包
+ 
+\geometry{left=2.0cm,right=2.0cm,top=0.0cm,bottom=2.0cm}
+ 
+\title{系统开发工具基础作业1}
+\author{姓名：李俊龙\ \ \ \ \ \ \ \ \ \  学号：23020007061 }
+%\date{} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\maketitle
+
+%\section{引言}
+本报告旨在记录学习git和latex的一些过程以及所遇到的一些问题
+
+
+%\subsection{git实例1}
+（1）首先要了解git是什么：git是一个功能十分强大的分布式版本控制系统，它的最大的特点就在于“版本控制”，可以将一份文档回溯到不同时期的提交状态，想要哪一份文档便可以回溯到那个时期，管理文件的功能十分强大。
+
+%\subsection{git实例2}
+（2）用git-bash管理文件：采用'git\ init 文件夹名称'命令可以创造一个由git管理的文件夹，即初始化一个git仓库（该仓库会包含一个.git目录）
+
+%\subsection{git实例3}
+（3）将文件纳入版本控制：[1]\ 'git\ add\ *.c',将已经修改完成的文件提交到暂存区。[2]\ git\ commit\ -m“注释”，将暂存区的文件全部提交到远程仓库。
+%\subsection{git实例4}
+
+（4）链接远程仓库（以github为例）：[1]采用ssh密钥的方式远程链接'github  ssh-keygen -t rsa -C' 这里换上你的邮箱，文件夹中找到'id rsa.pub'文件复制公钥并交给相应的github仓库\\
+当然也可以用'git\ remote\ add\ origin 服务器地址'\ 链接某个远程服务器
+
+%\subsection{git实例5}
+（5）对提交的文件进行标签化：git log——显示提交记录，并且显示你每次提交所对应的id，这样标签化后方便本地改动
+
+%\subsection[git实例6]
+（6）更新与合并：[1]git pull:可以拉取远程仓库的数据，更新本地仓库。
+[2]git merge branch
+[3]git diff sourcebranch targetbranch:预览分支之间的差异
+
+%\subsection{git课后练习题}
+（7）我在github上克隆了我的一个小组作业的仓库，并输入了git stash指令
+\begin{figure}[htbp] % 使用figure环境，h表示here
+  \centering%使图片居中
+    \includegraphics[width=0.5\textwidth]{屏幕截图 2024-08-31 235108 }
+\caption{示例}
+\end{figure}
+并且在输入git log --all --oneline指令后，会显示一个提交列表，从最早到最近。对于快速查看和理解仓库的变更历史非常有用。
+  
+\begin{figure}[htbp] % 使用figure环境
+  \centering%使图片居中
+  \includegraphics[width=0.5\textwidth]{屏幕截图 2024-09-01 000451} % 注意路径的斜杠被替换为反斜杠，且路径前加`
+  \caption{示例}
+\end{figure}
+
+（8）分支命令：分支是用来将特性开发绝缘开来的。在你创建仓库的时候，master 是"默认的"分支。在其他分支上进行开发，完成后再将它们合并到主分支上。\\
+比如[1]git branch:没有参数时，git branch 会列出你在本地的分支。\\.[2]git checkout:可以更改分支 \\.[3]git merge:可以合并分支。
+
+接下来是关于学习latex的实例：我选择了一个轻量化的前端TeXworks来编译latex
+
+（1）usepackage{ctex}和 usepackage{graphicx}是需要手动添加的两个宏包，分别含有中文包和图片包
+
+（2）latex中会穿插大量的图片，所以需要学习如何插入图片，一般格式为“begin{figure}[h]h表示herecentering（使图片居中，非必要）\\includegraphics[设置长宽]{图片文件路径}\\caption{示例}”\\end{figure}
+
+（3）Texworks中有很多编译器，最常用的当属XeLaTex，其中有很多模板可以套用
+
+（4）我在插入图片的时候遇到了路径总是出错的情况，在查阅资料之后我选择将我将要上传的图片保存在了与latex文档统一目录下，这样只要输入图片的文件名就可以正确的编译出图片。
+
+（5)图片并排操作如下
+\\begin{figure}[htbp]
+\\centering
+\\subfigure
+{
+    \\begin{minipage}[b]{.3 linewidth}
+        \\centering
+        \\includegraphics[scale=0.1]{图片名称}
+    \\end{minipage}
+}
+\\subfigure
+{
+ 	\\begin{minipage}[b]{.3 linewidth}
+        \\centering
+        \\includegraphics[scale=0.1]{图片名称}
+    \\end{minipage}
+}
+\\subfigure
+{
+ 	\\begin{minipage}[b]{.3 linewidth}
+        \\centering
+        \\includegraphics[scale=0.1]{图片名称}
+    \\end{minipage}
+}
+\\caption{figure title}
+\\end{figure}
+
+                       
+
+\end{document}
